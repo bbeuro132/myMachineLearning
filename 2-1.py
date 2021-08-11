@@ -1,6 +1,19 @@
+#최근접 이웃 분류 알고리즘
+#좌표를 주면 그 주위에 가장 가까운 좌표를 구해서 어떠한 부류에 속하는지를 계산해주는 클래스이다
 from sklearn.neighbors import KNeighborsClassifier
+
 import numpy as np
+#머신러닝에서는 fit 함수(학습하는 함수)
+#1,2 -> 1
+#1,0 -> 0
+#3,4 -> 1
+
+#그래프를 그리는 클래스
 import matplotlib.pyplot as plt
+
+#scatter : 산점도, 그래프를 그리는 것
+
+
 
 fish_length = [25.4, 26.3, 26.5, 29.0, 29.0, 29.7, 29.7, 30.0, 30.0, 30.7, 31.0, 31.0,
                 31.5, 32.0, 32.0, 32.0, 33.0, 33.0, 33.5, 33.5, 34.0, 34.0, 34.5, 35.0,
@@ -23,6 +36,8 @@ train_target = fish_target[:35]
 
 test_input = fish_data[35:]
 test_target = fish_target[35:]
+
+
 
 knc = KNeighborsClassifier()
 knc.fit(train_input, train_target)
@@ -53,23 +68,24 @@ test_target = target_arr[index[35:]] #각각 14개의 데이터가 들어가있�
 #print(train_input.shape)
 #print(train_target.shape)
 
-print(train_input[:,0])
-print(train_input[:,1])
+
 
 plt.scatter(train_input[:,0], train_input[:,1])
 plt.scatter(test_input[:,0], test_input[:,1])
 plt.xlabel('length')
 plt.ylabel('weight')
-plt.show()
+#plt.show()
 
 knc = KNeighborsClassifier()
 knc.fit(train_input, train_target)
 score = knc.score(test_input, test_target)
-print(score)
+#print(score)
 
 prevalues = knc.predict([[10,20], [30,500], [40,300]]) #좌표를 찍어주어 bream인지 smelt인지 확인한다.
-print("예측값", prevalues)
+#print("예측값", prevalues)
 
 prevalues = knc.predict(test_input)
-print("예측값", prevalues)
-print("실제값", test_target)
+#print("예측값", prevalues)
+#print("실제값", test_target)
+
+
